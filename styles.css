@@ -84,7 +84,7 @@ body {
     font-size: 1.25rem;
     color: white;
     margin-bottom: 2rem;
-    max-width: 32rem;
+    max-width: 42rem;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
@@ -193,7 +193,7 @@ body {
 .section-description {
     font-size: 1.25rem;
     color: #6b7280;
-    max-width: 48rem;
+    max-width: 56rem;
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -322,7 +322,7 @@ body {
 }
 
 .compensation-premium {
-    background-color: #f472b6;
+    background-color: #1f2937;
 }
 
 .compensation-basic {
@@ -420,7 +420,7 @@ body {
 .earnings-amount {
     font-size: 2rem;
     font-weight: bold;
-    color: #f472b6;
+    color: black;
     margin-bottom: 0.5rem;
 }
 
@@ -433,8 +433,8 @@ body {
 }
 
 .earnings-calculation {
-    font-size: 0.875rem;
-    color: #9ca3af;
+    font-size: 1rem;
+    color: black;
     margin-top: 0.5rem;
 }
 
