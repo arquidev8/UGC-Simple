@@ -16,7 +16,7 @@ let isSubmitting = false;
 // Variables para elementos del DOM (se inicializarán cuando el DOM esté listo)
 let form, submitBtn, successMessage, formContainer;
 let videoInput, nameInput, emailInput, phoneInput;
-let portfolioInput, equipmentInput, availabilityInput, referralInput;
+let portfolioInput, enlaceSecundarioInput, enlacePortafolioWebInput, equipmentInput, availabilityInput, referralInput;
 let progressContainer, progressFill, progressPercentage, progressStatus;
 
 // Funciones de utilidad
@@ -174,6 +174,26 @@ function validateForm() {
         console.log('Portfolio validation passed');
     }
 
+    // Validar enlace secundario (opcional)
+    console.log('Validating secondary link:', enlaceSecundarioInput.value);
+    if (enlaceSecundarioInput.value.trim() && !validateUrl(enlaceSecundarioInput.value.trim())) {
+        console.log('Secondary link validation failed - invalid URL');
+        showError(document.getElementById('error-enlace_secundario'), 'Por favor ingresa una URL válida');
+        isValid = false;
+    } else {
+        console.log('Secondary link validation passed');
+    }
+
+    // Validar portafolio web (opcional)
+    console.log('Validating web portfolio:', enlacePortafolioWebInput.value);
+    if (enlacePortafolioWebInput.value.trim() && !validateUrl(enlacePortafolioWebInput.value.trim())) {
+        console.log('Web portfolio validation failed - invalid URL');
+        showError(document.getElementById('error-enlace_portafolio_web'), 'Por favor ingresa una URL válida');
+        isValid = false;
+    } else {
+        console.log('Web portfolio validation passed');
+    }
+
     // Validar equipos de grabación (opcional)
     console.log('Validating equipment:', equipmentInput.value);
     if (equipmentInput.value.trim() && equipmentInput.value.trim().length < 10) {
@@ -288,6 +308,8 @@ async function saveToDatabase(videoData) {
              numero_telefono: phoneInput.value.trim(),
              experiencia_ugc: experienceValue,
              enlace_portafolio: portfolioInput.value?.trim() || null,
+             enlace_secundario: enlaceSecundarioInput.value?.trim() || null,
+             enlace_portafolio_web: enlacePortafolioWebInput.value?.trim() || null,
              equipos_grabacion: equipmentInput.value?.trim() || null,
              aplicaciones_edicion: selectedApps.length > 0 ? selectedApps.join(', ') : null,
              disponibilidad_3_dias: availabilityInput.checked,
@@ -411,6 +433,8 @@ document.addEventListener('DOMContentLoaded', function() {
     emailInput = document.getElementById('correo_electronico');
     phoneInput = document.getElementById('numero_telefono');
     portfolioInput = document.getElementById('enlace_portafolio');
+    enlaceSecundarioInput = document.getElementById('enlace_secundario');
+    enlacePortafolioWebInput = document.getElementById('enlace_portafolio_web');
     equipmentInput = document.getElementById('equipos_grabacion');
     availabilityInput = document.getElementById('disponibilidad_3_dias');
     referralInput = document.getElementById('como_se_entero');
@@ -486,8 +510,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    if (enlaceSecundarioInput) {
+        enlaceSecundarioInput.addEventListener('blur', function() {
+            if (this.value.trim() && !validateUrl(this.value.trim())) {
+                showError(document.getElementById('error-enlace_secundario'), 'Por favor ingresa una URL válida');
+            } else {
+                hideError(document.getElementById('error-enlace_secundario'));
+            }
+        });
+    }
+    
+    if (enlacePortafolioWebInput) {
+        enlacePortafolioWebInput.addEventListener('blur', function() {
+            if (this.value.trim() && !validateUrl(this.value.trim())) {
+                showError(document.getElementById('error-enlace_portafolio_web'), 'Por favor ingresa una URL válida');
+            } else {
+                hideError(document.getElementById('error-enlace_portafolio_web'));
+            }
+        });
+    }
+    
     // Limpiar errores cuando el usuario empiece a escribir
-    const inputs = [nameInput, emailInput, phoneInput, portfolioInput, equipmentInput, referralInput];
+    const inputs = [nameInput, emailInput, phoneInput, portfolioInput, enlaceSecundarioInput, enlacePortafolioWebInput, equipmentInput, referralInput];
     inputs.forEach(input => {
         if (input) {
             input.addEventListener('input', function() {
