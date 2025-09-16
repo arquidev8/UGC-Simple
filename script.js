@@ -175,23 +175,27 @@ function validateForm() {
     }
 
     // Validar enlace secundario (opcional)
-    console.log('Validating secondary link:', enlaceSecundarioInput.value);
-    if (enlaceSecundarioInput.value.trim() && !validateUrl(enlaceSecundarioInput.value.trim())) {
-        console.log('Secondary link validation failed - invalid URL');
-        showError(document.getElementById('error-enlace_secundario'), 'Por favor ingresa una URL válida');
-        isValid = false;
-    } else {
-        console.log('Secondary link validation passed');
+    if (enlaceSecundarioInput) {
+        console.log('Validating secondary link:', enlaceSecundarioInput.value);
+        if (enlaceSecundarioInput.value.trim() && !validateUrl(enlaceSecundarioInput.value.trim())) {
+            console.log('Secondary link validation failed - invalid URL');
+            showError(document.getElementById('error-enlace_secundario'), 'Por favor ingresa una URL válida');
+            isValid = false;
+        } else {
+            console.log('Secondary link validation passed');
+        }
     }
 
     // Validar portafolio web (opcional)
-    console.log('Validating web portfolio:', enlacePortafolioWebInput.value);
-    if (enlacePortafolioWebInput.value.trim() && !validateUrl(enlacePortafolioWebInput.value.trim())) {
-        console.log('Web portfolio validation failed - invalid URL');
-        showError(document.getElementById('error-enlace_portafolio_web'), 'Por favor ingresa una URL válida');
-        isValid = false;
-    } else {
-        console.log('Web portfolio validation passed');
+    if (enlacePortafolioWebInput) {
+        console.log('Validating web portfolio:', enlacePortafolioWebInput.value);
+        if (enlacePortafolioWebInput.value.trim() && !validateUrl(enlacePortafolioWebInput.value.trim())) {
+            console.log('Web portfolio validation failed - invalid URL');
+            showError(document.getElementById('error-enlace_portafolio_web'), 'Por favor ingresa una URL válida');
+            isValid = false;
+        } else {
+            console.log('Web portfolio validation passed');
+        }
     }
 
     // Validar equipos de grabación (opcional)
