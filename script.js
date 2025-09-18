@@ -198,15 +198,21 @@ function validateForm() {
         }
     }
 
-    // Validar equipos de grabación (opcional)
-    console.log('Validating equipment:', equipmentInput.value);
-    if (equipmentInput.value.trim() && equipmentInput.value.trim().length < 10) {
-        console.log('Equipment validation failed - too short');
-        showError(document.getElementById('error-equipos_grabacion'), 'Por favor describe tus equipos con más detalle (mínimo 10 caracteres)');
-        isValid = false;
-    } else {
-        console.log('Equipment validation passed');
-    }
+   // Validar equipos de grabación (obligatorio)
+console.log('Validating equipment:', equipmentInput.value);
+if (!equipmentInput.value.trim()) {
+    console.log('Equipment validation failed - empty');
+    showError(document.getElementById('error-equipos_grabacion'), 'Por favor describe los equipos que usas para grabar.');
+    isValid = false;
+} else if (equipmentInput.value.trim().length < 10) {
+    console.log('Equipment validation failed - too short');
+    showError(document.getElementById('error-equipos_grabacion'), 'Por favor describe tus equipos con más detalle (mínimo 10 caracteres)');
+    isValid = false;
+} else {
+    console.log('Equipment validation passed');
+    showError(document.getElementById('error-equipos_grabacion'), ''); // limpia error
+}
+
 
     // Validar disponibilidad
     console.log('Validating availability:', availabilityInput.checked);
